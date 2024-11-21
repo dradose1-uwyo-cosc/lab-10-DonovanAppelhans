@@ -4,7 +4,7 @@
 # Lab 10
 # Lab Section: 12
 # Sources, people worked with, help given to: 
-# 
+# ChatGPT
 
 #import modules you will need 
 
