@@ -1,12 +1,10 @@
-# Your Name Here
+# Donovan Appelhans
 # UWYO COSC 1010
-# Submission Date
-# Lab XX
-# Lab Section: 
+# 11/21/2024
+# Lab 10
+# Lab Section: 12
 # Sources, people worked with, help given to: 
-# your
-# comments
-# here
+# 
 
 #import modules you will need 
 
@@ -17,7 +15,31 @@ def get_hash(to_hash):
     """You can use """
     return sha256(to_hash.encode('utf-8')).hexdigest().upper()
 
+try:
+    with open('hash', 'r') as hash_file:
+        stored_hash = hash_file.read().strip()
+except FileNotFoundError:
+    print("Error: 'hash' file not found.")
+    stored_hash = None
+except Exception as e:
+    print(f"An error occurred while opening the 'hash' file: {e}")
+    stored_hash = None
 
+if stored_hash:
+    try:
+        with open('rockyou.txt', 'r') as passwords_file:
+            for line in passwords_file:
+                password = line.strip()
+                hashed_password = get_hash(password)
+                if hashed_password == stored_hash:
+                    print(f"Password found: {password}")
+                    break
+            else:
+                print("Password not found in the list.")
+    except FileNotFoundError:
+        print("Error: 'rockyou.txt' file not found.")
+    except Exception as e:
+        print(f"An error occurred while reading 'rockyou.txt': {e}")
 
 # Files and Exceptions
 
